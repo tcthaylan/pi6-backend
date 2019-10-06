@@ -1,7 +1,7 @@
-const mongoose = require('../database/index');
+const { Schema, model } = require('../database/index');
 const bcrypt = require('bcryptjs')
 
-const UserSchema = new mongoose.Schema({
+const UserSchema = new Schema({
   name: {
     type: String,
     require: true,
@@ -17,6 +17,9 @@ const UserSchema = new mongoose.Schema({
     required: true,
     select: false,
   },
+  restaurants: [{
+    type: Schema.Types.ObjectId,
+  }],
   createdAt: {
     type: Date,
     default: Date.now,
@@ -30,6 +33,6 @@ UserSchema.pre('save', async function(next) {
   next();
 })
 
-const User = mongoose.model('User', UserSchema);
+const User = model('User', UserSchema);
 
 module.exports = User;

@@ -1,9 +1,7 @@
-express
-body-parser
-27017
+- O usuário tem que inserir a latitude e longetude (depois eu posso deixar automático)
 
+- Sistema de login
 
-
-
-
-restaurante
+- Admin
+-- Lista de restaurantes
+-- Crud

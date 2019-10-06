@@ -6,7 +6,7 @@ const authConfig = require('../config/auth')
 
 const router = express.Router();
 
-function generateToken (params = {}) {
+const generateToken = (params = {}) => {
   return jwt.sign(params, authConfig.secret, {
     expiresIn: 86400,
   })
@@ -36,10 +36,10 @@ router.post('/authenticate', async (req, res) => {
   const user = await User.findOne({ email }).select('+password');
 
   if (!user)
-    res.status(400).send('Este usuário não existe');
+    res.status(400).send({ error: 'Este usuário não existe' });
 
   if (!await bcrypt.compare(password, user.password))
-    res.status(400).send('Senha inválida')
+    res.status(400).send({ error: 'Senha inválida' })
 
   user.password = undefined;
 
