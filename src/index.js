@@ -1,10 +1,12 @@
 // Importa o Express e o Body Parser
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors')
 
 // Cria a aplicação usando o Express
 const app = express();
 
+app.use(cors());
 // Ativa a utilização do Body Parser para o JSON e para as Urls
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
