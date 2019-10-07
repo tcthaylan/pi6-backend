@@ -30,6 +30,7 @@ router.post('/', async (req, res) => {
 
     return res.json({restaurant})
   } catch (error) {
+    console.log(error.message)
     return res.status(400).send({ error: error })
   }
 });

@@ -19,6 +19,7 @@ const UserSchema = new Schema({
   },
   restaurants: [{
     type: Schema.Types.ObjectId,
+    ref: "Restaurant"
   }],
   createdAt: {
     type: Date,

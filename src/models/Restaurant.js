@@ -7,7 +7,7 @@ const RestaurantSchema = new Schema({
   },
   endereco: {
     endereco: String,
-    numero: Number,
+    numero: String,
     bairro: String,
     complemento: String,
     cep: String,
@@ -20,6 +20,7 @@ const RestaurantSchema = new Schema({
     required: true,
     ref: "User",
   },
+  description: String,
   createdAt: {
     type: Date,
     default: Date.now

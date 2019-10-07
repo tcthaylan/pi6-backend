@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 require('./controllers/authController')(app); 
 require('./controllers/restaurantController')(app); 
 require('./controllers/projectController')(app); 
+require('./controllers/userController')(app); 
 
 // Habilita a porta 3000 para ouvir a aplicação
 app.listen(3000);
