@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const authMiddleware = require('../middlewares/auth');
+const multer = require('multer')
+const multerConfig = require('../config/multer');
 const Restaurant = require('../models/Restaurant');
 const User = require('../models/User');
 
@@ -15,14 +17,15 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', multer(multerConfig).single('picture'), async (req, res) => {
   const { user_id } = res;
+  const { filename } = req.file;
   try {
     const user = await User.findById(user_id)
     if (!user)
       return res.status(400).send({ error: "id do usuário inválido" });
   
-    const restaurant = new Restaurant({...req.body, user_id});
+    const restaurant = new Restaurant({ ...req.body, user_id, picture: filename });
     await restaurant.save();
 
     user.restaurants.push(restaurant._id);
@@ -30,7 +33,6 @@ router.post('/', async (req, res) => {
 
     return res.json({restaurant})
   } catch (error) {
-    console.log(error.message)
     return res.status(400).send({ error: error })
   }
 });

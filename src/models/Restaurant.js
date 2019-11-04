@@ -1,3 +1,4 @@
+const mongoosePaginate = require('mongoose-paginate')
 const { Schema, model } = require('../database/index');
 
 const RestaurantSchema = new Schema({
@@ -26,5 +27,7 @@ const RestaurantSchema = new Schema({
     default: Date.now
   }
 });
+
+RestaurantSchema.plugin(mongoosePaginate);
 
 module.exports = model("Restaurant", RestaurantSchema);

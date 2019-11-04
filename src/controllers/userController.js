@@ -9,7 +9,7 @@ router.get('/me', async (req, res) => {
   try {
     const { user_id } = res;
     const user = await User.findById(user_id).populate('restaurants');
-    return res.json({ user });
+    return res.json( user );
   } catch (error) {
     return res.status(400).send({ error })
   }

@@ -17,7 +17,6 @@ router.post('/register', async (req, res) => {
   try {
     if (await User.findOne({ email })) 
       res.status(400).send({ error: 'Este email já existe' });
-    
     const user = await User.create(req.body);
 
     user.password = undefined;
