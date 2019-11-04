@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors')
 const morgan = require('morgan')
+const path = require('path')
 
 // Cria a aplicação usando o Express
 const app = express();
@@ -12,6 +13,8 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('dev'))
+app.use('/files', 
+  express.static(path.resolve(__dirname, '..', 'tmp', 'uploads')))
 
 // Referencia o arquivo com as Rotas
 require('./controllers/authController')(app); 
