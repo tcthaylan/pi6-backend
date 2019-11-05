@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Restaurant = require('../models/Restaurant');
-const authMiddleWare = require('../middlewares/auth');
+const Food = require('../models/Food');
 
 router.get('/restaurants', async (req, res) => {
   try {
@@ -12,5 +12,14 @@ router.get('/restaurants', async (req, res) => {
   }
 });
 
+router.get('/foods/:foodName', async (req, res) => {
+  try {
+    const { foodName } = req.params;
+    const food = Food.findOne({name: new RegExp('^'+foodName+'$', "i")});
+    return res.json(food);
+  } catch (error) {
+    return res.status(400).send({ error })
+  }
+});
 
 module.exports = (app) => app.use('/client', router);

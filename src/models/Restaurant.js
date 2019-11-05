@@ -21,6 +21,10 @@ const RestaurantSchema = new Schema({
     required: true,
     ref: "User",
   },
+  foods: [{
+    ref: "Food",
+    type: Schema.Types.ObjectId,
+  }],
   description: String,
   createdAt: {
     type: Date,

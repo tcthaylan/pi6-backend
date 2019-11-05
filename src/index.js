@@ -22,6 +22,7 @@ require('./controllers/authController')(app);
 require('./controllers/restaurantController')(app); 
 require('./controllers/clientController')(app); 
 require('./controllers/userController')(app); 
+require('./controllers/foodController')(app); 
 
 // Habilita a porta 3000 para ouvir a aplicação
 app.listen(3000);

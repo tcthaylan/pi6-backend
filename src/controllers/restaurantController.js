@@ -11,7 +11,7 @@ router.use(authMiddleware)
 router.get('/', async (req, res) => {
   try {
     const restaurants = await Restaurant.find();
-    return res.json({restaurants});
+    return res.json(restaurants);
   } catch (error) {
     return res.status(400).send({ error })
   }
@@ -19,6 +19,8 @@ router.get('/', async (req, res) => {
 
 router.post('/', multer(multerConfig).single('picture'), async (req, res) => {
   const { user_id } = res;
+  console.log(res)
+  console.log(user_id)
   const { filename } = req.file;
   try {
     const user = await User.findById(user_id)
@@ -33,7 +35,7 @@ router.post('/', multer(multerConfig).single('picture'), async (req, res) => {
     user.restaurants.push(restaurant._id);
     await User.findByIdAndUpdate(user_id, user);
 
-    return res.json({restaurant})
+    return res.json(restaurant)
   } catch (error) {
     return res.status(400).send({ error: error })
   }
@@ -52,7 +54,7 @@ router.put('/:restaurantId', async (req, res) => {
       new: true
     });
 
-    return res.json({ restaurant });
+    return res.json( restaurant );
   } catch (error) {
     return res.status(400).send({ error })
   }
