@@ -25,6 +25,8 @@ router.post('/', multer(multerConfig).single('picture'), async (req, res) => {
     if (!user)
       return res.status(400).send({ error: "id do usuário inválido" });
   
+    req.body.endereco = JSON.parse(req.body.endereco)
+
     const restaurant = new Restaurant({ ...req.body, user_id, picture: filename });
     await restaurant.save();
 
