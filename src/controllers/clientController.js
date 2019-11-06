@@ -5,7 +5,6 @@ const Food = require('../models/Food');
 
 router.get('/restaurants', async (req, res) => {
   try {
-    console.log('opa')
     const restaurants = await Restaurant.find();
     return res.json(restaurants);
   } catch (error) {
