@@ -19,8 +19,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', multer(multerConfig).single('picture'), async (req, res) => {
   const { user_id } = res;
-  console.log(res)
-  console.log(user_id)
+
   const { filename } = req.file;
   try {
     const user = await User.findById(user_id)

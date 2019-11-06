@@ -2,7 +2,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors')
-const morgan = require('morgan')
 const path = require('path')
 
 // Cria a aplicação usando o Express
@@ -12,7 +11,6 @@ app.use(cors());
 // Ativa a utilização do Body Parser para o JSON e para as Urls
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(morgan('dev'))
 app.use('/files', 
   express.static(path.resolve(__dirname, '..', 'tmp', 'uploads')
 ))
