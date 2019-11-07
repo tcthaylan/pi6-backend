@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 // Conectar ao Banco de Dados
 const uri = 'mongodb://localhost/epouBear';
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 
 // Indica a classe de Promise que o Mongoose vai utilizar
 mongoose.Promise = global.Promise;
