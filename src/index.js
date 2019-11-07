@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors')
 const path = require('path')
-
+require('dotenv').config()
 // Cria a aplicação usando o Express
 const app = express();
 
@@ -23,4 +23,4 @@ require('./controllers/userController')(app);
 require('./controllers/foodController')(app); 
 
 // Habilita a porta 3000 para ouvir a aplicação
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
